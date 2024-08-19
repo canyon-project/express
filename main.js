@@ -11,19 +11,17 @@ app.get('/vi/health', (req, res) => {
     res.send('Hello World');
 });
 // 获取当前目录路径
-// const __dirname = path.resolve();
-//
-// // 加载SSL证书和私钥
-// const options = {
-//     key: fs.readFileSync(path.resolve(__dirname, 'selfsigned.key')),
-//     cert: fs.readFileSync(path.resolve(__dirname, 'selfsigned.crt'))
-// };
-//
-// // 设置路由
-//
-// // 创建HTTPS服务器
-// https.createServer(options, app).listen(443, () => {
-//     console.log('HTTPS server running on port 443');
-// });
+const __dirname = path.resolve();
 
-app.listen(80, () => {});
+// 加载SSL证书和私钥
+const options = {
+    key: fs.readFileSync(path.resolve(__dirname, 'selfsigned.key')),
+    cert: fs.readFileSync(path.resolve(__dirname, 'fullchain.pem'))
+};
+
+// 设置路由
+
+// 创建HTTPS服务器
+https.createServer(options, app).listen(443, () => {
+    console.log('HTTPS server running on port 443');
+});
