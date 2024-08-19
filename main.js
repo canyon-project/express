@@ -15,8 +15,8 @@ const __dirname = path.resolve();
 
 // 加载SSL证书和私钥
 const options = {
-    key: fs.readFileSync(path.resolve(__dirname, 'fullchain.pem')),
-    cert: fs.readFileSync(path.resolve(__dirname, 'privkey.pem'))
+    key: fs.readFileSync(path.resolve(__dirname, 'privkey.pem')),
+    cert: fs.readFileSync(path.resolve(__dirname, 'fullchain.pem'))
 };
 
 // 设置路由
