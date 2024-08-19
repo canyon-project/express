@@ -8,17 +8,11 @@ const app = express();
 
 // app.use(express.static('public'));
 
-// 中间件函数，用于将非 www 域名请求重定向到 www 域名
-app.use((req, res, next) => {
-    const host = req.headers.host;
-
-    // 检查请求是否来自目标域名，并且是否需要重定向
-    if (host === 'canyonalls.com') {
-        const newUrl = `https://www.canyonalls.com${req.url}`;
-        return res.redirect(301, newUrl);
-    }
-    next();
-});
+// 设置反向代理
+app.use('*', createProxyMiddleware({
+    target: 'http://localhost:8080', // 目标域名
+    changeOrigin: true
+}));
 
 // 获取当前目录路径
 const __dirname = path.resolve();
