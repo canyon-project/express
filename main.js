@@ -11,12 +11,12 @@ const redirectApp = express(); // 创建一个新的 Express 应用用于重定�
 // 使用 HTTP 服务器处理重定向
 redirectApp.use((req, res) => {
     const httpsUrl = `https://${req.headers.host}`;
-    res.redirect(httpsUrl); // 301 是永久重定向
+    res.redirect(301,httpsUrl); // 301 是永久重定向
 });
 
 app.use('/', (req, res, next) => {
     if (req.headers.host.includes('www.canyonalls.com')) {
-        return res.redirect('https://canyonalls.com' + req.url);
+        return res.redirect(301,'https://canyonalls.com' + req.url);
     }
     // Use the proxy middleware
     createProxyMiddleware({
@@ -39,6 +39,6 @@ https.createServer(options, app).listen(443, () => {
 });
 
 // 创建 HTTP 服务器并重定向到 HTTPS
-http.createServer(redirectApp).listen(80, () => {
+redirectApp.createServer(redirectApp).listen(80, () => {
     console.log('HTTP server running on port 80 and redirecting to HTTPS');
 });
