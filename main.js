@@ -2,14 +2,18 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import https from 'https';
+import {createProxyMiddleware} from "http-proxy-middleware";
 
 const app = express();
 
 app.use(express.static('public'));
 
-app.get('/vi/health', (req, res) => {
-    res.send('Hello World');
-});
+// 设置反向代理
+app.use('*', createProxyMiddleware({
+    target: 'https://www.canyonalls.com', // 目标域名
+    changeOrigin: true
+}));
+
 // 获取当前目录路径
 const __dirname = path.resolve();
 
