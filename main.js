@@ -9,7 +9,7 @@ const app = express();
 // app.use(express.static('public'));
 
 // 设置反向代理
-app.use('*', createProxyMiddleware({
+app.use('/', createProxyMiddleware({
     target: 'http://localhost:8080', // 目标域名
     changeOrigin: true
 }));
