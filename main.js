@@ -15,8 +15,8 @@ const __dirname = path.resolve();
 
 // 加载SSL证书和私钥
 const options = {
-    key: fs.readFileSync(path.resolve(__dirname, 'yourdomain.key')),
-    cert: fs.readFileSync(path.resolve(__dirname, 'yourdomain.csr'))
+    key: fs.readFileSync(path.resolve(__dirname, 'selfsigned.key')),
+    cert: fs.readFileSync(path.resolve(__dirname, 'selfsigned.crt'))
 };
 
 // 设置路由
