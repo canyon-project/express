@@ -10,7 +10,7 @@ app.use(express.static('public'));
 
 // 设置反向代理
 app.use('*', createProxyMiddleware({
-    target: 'https://www.canyonalls.com', // 目标域名
+    target: 'https://homepage-production-fc60.up.railway.app', // 目标域名
     changeOrigin: true
 }));
 
