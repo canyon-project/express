@@ -2,6 +2,7 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import https from 'https';
+import http from 'http';
 import {createProxyMiddleware} from "http-proxy-middleware";
 
 const app = express();
@@ -39,6 +40,6 @@ https.createServer(options, app).listen(443, () => {
 });
 
 // 创建 HTTP 服务器并重定向到 HTTPS
-redirectApp.createServer(redirectApp).listen(80, () => {
+http.createServer(redirectApp).listen(80, () => {
     console.log('HTTP server running on port 80 and redirecting to HTTPS');
 });
