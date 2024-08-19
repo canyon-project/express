@@ -8,14 +8,16 @@ const app = express();
 
 // app.use(express.static('public'));
 
-// 设置反向代理
-app.use('/', createProxyMiddleware({
-    target: 'http://localhost:8080', // 目标域名
-    changeOrigin: true
-}));
-
-// 获取当前目录路径
-const __dirname = path.resolve();
+app.use('/', (req, res, next) => {
+    if (req.headers.host.includes('www.canyonalls.com')) {
+        return res.redirect('https://canyonalls.com' + req.url);
+    }
+    // Use the proxy middleware
+    createProxyMiddleware({
+        target: 'http://localhost:8080', // The target server
+        changeOrigin: true,
+    })(req, res, next);
+});
 
 // 加载SSL证书和私钥
 const options = {
