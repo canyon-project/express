@@ -15,8 +15,8 @@ const __dirname = path.resolve();
 
 // 加载SSL证书和私钥
 const options = {
-    key: fs.readFileSync(path.resolve(__dirname, 'privkey.pem')),
-    cert: fs.readFileSync(path.resolve(__dirname, 'fullchain.pem'))
+    key: fs.readFileSync('/etc/letsencrypt/live/canyonalls.com-0001/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/canyonalls.com-0001/fullchain.pem')
 };
 
 // 设置路由
