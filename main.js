@@ -10,7 +10,7 @@ const redirectApp = express(); // 创建一个新的 Express 应用用于重定�
 
 // 使用 HTTP 服务器处理重定向
 redirectApp.use((req, res) => {
-    const httpsUrl = `https://${req.headers.host}${req.url}`;
+    const httpsUrl = `https://${req.headers.host}`;
     res.redirect(httpsUrl); // 301 是永久重定向
 });
 
