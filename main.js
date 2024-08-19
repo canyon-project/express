@@ -6,7 +6,7 @@ import {createProxyMiddleware} from "http-proxy-middleware";
 
 const app = express();
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 // 设置反向代理
 app.use('*', createProxyMiddleware({
