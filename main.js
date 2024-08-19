@@ -11,7 +11,7 @@ const app = express();
 // 设置反向代理
 app.use('*', createProxyMiddleware({
     target: 'https://www.canyonalls.com', // 目标域名
-    changeOrigin: true
+    // changeOrigin: true
 }));
 
 // 获取当前目录路径
